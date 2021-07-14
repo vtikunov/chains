@@ -1,0 +1,26 @@
+version: '3.3'
+
+networks:
+  app:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.131.0.0/28
+
+services:
+  php-cli:
+    env_file:
+      - .env.default
+    restart: unless-stopped
+    image: vtikunov/php:8.0.8-cli-alpine3.14
+    container_name: "php-cli_${CONTAINER_NAME_SUFFIX:-vtikunov-chains}"
+    volumes:
+      - "${PASSWD_FILE:-/etc/passwd}:/etc/passwd:ro"
+      - "${GROUP_FILE:-/etc/group}:/etc/group:ro"
+      - .:/usr/data/app:rw
+    environment:
+      PHP_CLI_USER_ID: "${USER_ID:-1000}"
+      PHP_CLI_GROUP_ID: "${GROUP_ID:-1000}"
+    networks:
+      - app

@@ -1,0 +1,46 @@
+{
+    "name": "vtikunov/chains",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "vtikunov",
+            "email": "vtikunov@yandex.ru",
+            "homepage": "https://github.com/vtikunov",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "VTikunov\\Chains\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "VTikunov\\test\\Chains\\": "test"
+        }
+    },
+    "scripts": {
+        "test:phpunit": "vendor/bin/phpunit --coverage-text=php://stdout",
+        "test:phpstan": "vendor/bin/phpstan analyse -l 8 --memory-limit=2048M",
+        "phpstan": "@test:phpstan",
+        "test:phpcs": "vendor/bin/ecs check",
+        "fix:phpcs": "vendor/bin/ecs check --fix"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+        "ergebnis/phpstan-rules": "0.15.3",
+        "phpstan/phpstan": "0.12.92",
+        "phpstan/phpstan-strict-rules": "0.12.10",
+        "phpunit/phpunit": "9.5.6",
+        "sempro/phpunit-pretty-print": "1.4.0",
+        "slevomat/coding-standard": "7.0.12",
+        "symplify/easy-coding-standard": "9.4.22"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

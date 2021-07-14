@@ -1,0 +1,24 @@
+includes:
+	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
+parameters:
+    paths:
+        - src
+        - test
+    checkGenericClassInNonGenericObjectType: false
+    ergebnis:
+        allowAbstractClasses: true
+        classesAllowedToBeExtended: []
+        classesNotRequiredToBeAbstractOrFinal: []
+        interfacesImplementedByContainers:
+            - Psr\Container\ContainerInterface
+parametersSchema:
+    ergebnis: structure([
+        allowAbstractClasses: bool()
+        classesAllowedToBeExtended: listOf(string())
+        classesNotRequiredToBeAbstractOrFinal: listOf(string())
+        interfacesImplementedByContainers: listOf(string())
+])
+
+rules:
+    - Ergebnis\PHPStan\Rules\Files\DeclareStrictTypesRule
+    - PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
